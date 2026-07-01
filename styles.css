@@ -37,9 +37,11 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
-  /* 3D stage: children rotate/recede inside this depth on hover. */
-  perspective: 1600px;
-  perspective-origin: 50% 42%;
+  /* 3D stage: a gentle, deep perspective so Z-separation reads as depth
+     without exaggerating the size falloff. Origin sits left-of-centre to
+     give the left-front camera angle. */
+  perspective: 2200px;
+  perspective-origin: 50% 48%;
 }
 
 /* ---- Base card ---- */
@@ -75,20 +77,22 @@ body {
 .card:nth-child(4) { --i: 3; }
 
 .card-grid:hover .card {
-  /* i-1.5 centres the fan around the middle of the row. */
+  /* Sequential depth planes: card 0 (left) is the near foreground and each
+     successive card steps up-and-right while receding into the distance —
+     a long diagonal from lower-left front to upper-right back. --n centres
+     the horizontal spread so the whole sequence stays balanced. */
   --n: calc(var(--i) - 1.5);
   transform:
     translate3d(
-      calc(var(--n) * -95px),   /* ~40% overlap: spread but stacked     */
-      calc(var(--n) * -42px),   /* gentle rise: left low, right high    */
-      calc(var(--n) * 45px)     /* light depth; cards stay similar size */
+      calc(var(--n) * -58px),      /* generous offset → ~25% overlap, 75% visible */
+      calc(var(--i) * -70px),      /* rise: near card low, far card high          */
+      calc(var(--i) * -125px)      /* strong Z separation, each on its own plane  */
     )
-    rotateX(3deg)
-    rotateY(-17deg);            /* shallow lean, all facing south-west  */
-  box-shadow: 0 40px 65px -30px rgba(50, 60, 45, 0.45);
-  /* Back-left panes fade toward glass; front-right stay solid. */
-  opacity: calc(0.72 + var(--i) * 0.09);
-  /* No per-card delay: the whole set moves together as one motion. */
+    scale(calc(1 - var(--i) * 0.05))  /* subtle 5% shrink per layer reinforces depth */
+    rotateY(-19deg);                  /* left-front camera angle, panes lean the same way */
+  box-shadow: 0 40px 70px -32px rgba(50, 60, 45, 0.4);
+  /* Near cards solid; far cards drift toward glass. */
+  opacity: calc(1 - var(--i) * 0.05);
 }
 
 /* Keep whichever card the pointer is on fully opaque and lifted. */
