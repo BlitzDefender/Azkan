@@ -75,21 +75,20 @@ body {
 .card:nth-child(4) { --i: 3; }
 
 .card-grid:hover .card {
-  /* i-1.5 centres the stagger around the middle of the row. */
+  /* i-1.5 centres the fan around the middle of the row. */
   --n: calc(var(--i) - 1.5);
   transform:
     translate3d(
-      calc(var(--n) * -120px),  /* compress the row so panes overlap */
-      calc(var(--n) * -64px),   /* left cards drop, right cards rise */
-      calc(var(--n) * 95px)     /* right cards come forward (larger)  */
+      calc(var(--n) * -95px),   /* ~40% overlap: spread but stacked     */
+      calc(var(--n) * -42px),   /* gentle rise: left low, right high    */
+      calc(var(--n) * 45px)     /* light depth; cards stay similar size */
     )
-    rotateX(7deg)
-    rotateY(-32deg);
-  box-shadow: 0 45px 70px -30px rgba(50, 60, 45, 0.5);
+    rotateX(3deg)
+    rotateY(-17deg);            /* shallow lean, all facing south-west  */
+  box-shadow: 0 40px 65px -30px rgba(50, 60, 45, 0.45);
   /* Back-left panes fade toward glass; front-right stay solid. */
-  opacity: calc(0.7 + var(--i) * 0.1);
-  /* Ripple: left panes settle first, right panes trail. */
-  transition-delay: calc(var(--i) * 70ms);
+  opacity: calc(0.72 + var(--i) * 0.09);
+  /* No per-card delay: the whole set moves together as one motion. */
 }
 
 /* Keep whichever card the pointer is on fully opaque and lifted. */
