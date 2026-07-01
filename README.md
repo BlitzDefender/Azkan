@@ -11,6 +11,10 @@ node dev-server.mjs
 Then open **http://localhost:3000**. Edit `index.html` or `styles.css`, save,
 and the page reloads automatically.
 
+The server also **auto-pulls from GitHub every few seconds**, so changes pushed
+to this branch appear live in your browser without you doing anything — just
+leave `node dev-server.mjs` running. (Set `AUTOPULL=0` to turn this off.)
+
 ## Other quick options
 
 - **Just open the file:** double-click `index.html` (no auto-reload).
