@@ -77,22 +77,25 @@ body {
 .card:nth-child(4) { --i: 3; }
 
 .card-grid:hover .card {
-  /* Sequential depth planes: card 0 (left) is the near foreground and each
-     successive card steps up-and-right while receding into the distance —
-     a long diagonal from lower-left front to upper-right back. --n centres
-     the horizontal spread so the whole sequence stays balanced. */
+  /* Cascading depth planes: each card steps up-and-to-the-right, sitting in
+     front of the one before it — the rightmost (green) card is the nearest,
+     the leftmost the farthest. --n centres the horizontal spread. */
   --n: calc(var(--i) - 1.5);
+  /* Distance from the front (rightmost) plane: 0 for card 3 … 3 for card 0. */
+  --back: calc(3 - var(--i));
   transform:
     translate3d(
-      calc(var(--n) * -58px),      /* generous offset → ~25% overlap, 75% visible */
-      calc(var(--i) * -70px),      /* rise: near card low, far card high          */
-      calc(var(--i) * -125px)      /* strong Z separation, each on its own plane  */
+      calc(var(--n) * -100px),        /* overlap ~40%, ~55% of each card visible */
+      calc(var(--i) * -46px),         /* gentle rise up to the right (~20°) */
+      calc(var(--back) * -60px)       /* right = near plane, left recedes back */
     )
-    scale(calc(1 - var(--i) * 0.05))  /* subtle 5% shrink per layer reinforces depth */
-    rotateY(-19deg);                  /* left-front camera angle, panes lean the same way */
+    scale(calc(1 - var(--back) * 0.025)) /* far cards only slightly smaller */
+    rotateY(-20deg);                     /* left-front camera angle */
+  /* Nearer (rightmost) cards paint on top of the ones behind them. */
+  z-index: var(--i);
   box-shadow: 0 40px 70px -32px rgba(50, 60, 45, 0.4);
   /* Near cards solid; far cards drift toward glass. */
-  opacity: calc(1 - var(--i) * 0.05);
+  opacity: calc(1 - var(--back) * 0.05);
 }
 
 /* Keep whichever card the pointer is on fully opaque and lifted. */
