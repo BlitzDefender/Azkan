@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azkan — Card Grid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <section class="card-grid-section" aria-label="Feature showcase">
+      <div class="card-grid">
+        <!-- Card 1: Soft gradient blur -->
+        <article class="card card--blur">
+          <div class="card__glow"></div>
+          <h3 class="card__title card__title--center">Image Blurs</h3>
+          <div class="card__search">
+            <span class="card__search-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+            <span>Search Features</span>
+          </div>
+        </article>
+
+        <!-- Card 2: Glass window / pill button -->
+        <article class="card card--glass">
+          <div class="card__pill">Sign Up</div>
+          <p class="card__caption">Enhance your visibility.<br />Seamless flow.</p>
+        </article>
+
+        <!-- Card 3: Big percentage + slider -->
+        <article class="card card--stat">
+          <div class="card__percent">48%</div>
+          <div class="card__scale">
+            <span>0</span><span>50</span><span>100</span>
+          </div>
+          <div class="card__slider">
+            <div class="card__slider-fill"></div>
+            <div class="card__slider-knob"></div>
+          </div>
+        </article>
+
+        <!-- Card 4: Visual metaphor / image -->
+        <article class="card card--visual">
+          <div class="card__scene">
+            <div class="card__stack"></div>
+            <div class="card__sprout"></div>
+            <div class="card__pedestal"></div>
+          </div>
+          <div class="card__badge">Visual Metaphors</div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
